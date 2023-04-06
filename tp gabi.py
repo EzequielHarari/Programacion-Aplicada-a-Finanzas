@@ -121,7 +121,7 @@ class myarray:
            copia = self.switch().elems.copy()
 
         lista = copia[:j*self.c]+copia[self.c*j+self.c:]
-        return myarray(lista,self.r,self.c,self.by_row)# cambiado
+        return myarray(lista,self.r,self.c,self.by_row)
     def del_col(self,k):
         """Elimina la columna k de la matriz y devuelve la matriz resultante como una lista."""
         if  self.by_row:
@@ -132,7 +132,7 @@ class myarray:
             copia.pop(numero)
             if numero==len (copia):
                 break
-        return myarray(copia,self.r,self.c,self.by_row)#cambiado
+        return myarray(copia,self.r,self.c,self.by_row)
     def añadir (self,intercambio,k,fila):
         """Añade los elementos de la fila indicada en la matriz intercambio a partir de la posición k."""
         posicion= k*self.c
@@ -397,9 +397,12 @@ class myarray:
         det=my_array.det()
         transpuesta=myarray(matriz, self.r, self.c, self.by_row).transpose()
         return (1/det)*transpuesta
-
-
- 
+    def __pow__(self,n):
+        matriz= myarray(self.elems, self.r, self.c, self.by_row)
+        resultado=matriz
+        for elemento in range (n):
+            resultado=myarray(resultado@matriz,self.r,self.c,self.by_row)
+        return resultado.elems
 
 class eye ():
     def __init__(self,c):
@@ -410,6 +413,28 @@ class eye ():
             identidad[posicion]=1
         
         return identidad
+
+        
+    def delete_rows(self,d):
+        """
+        
+         Elimina una fila de la matriz identidad
+   
+        Parameters
+        ----------
+        d :int. Fila  a eliminar
+
+        Returns
+        -------
+        lista : Matriz identidad con fila eliminada
+
+
+        """
+        
+        lista=self.create()
+        posicion=d*(self.c+1)
+        lista=lista[0:posicion]+lista[posicion+self.c:]
+        return lista
     
     def delete(self,d):
         identidad=self.create()
@@ -421,11 +446,6 @@ class eye ():
             else:
                 posicion+=self.c
         
-        return lista
-    def delete_rows(self,d):
-        lista=self.create()
-        posicion=d*self.c
-        lista=lista[0:posicion]+lista[posicion+c::]
         return lista
     def swap (self,a,b):
         identidad= self.create()
@@ -720,46 +740,46 @@ class myarray2:
         
         
         
-        
+              
         
             
 
 
 if __name__=='__main__':
-    # elems=[[0,1,2],[
-    #         3,4,5],[
-    #         6,7,8]]
-    # r=3   
-    # c=3
-    # by_row=True
-
-    # j=2
-    # k=1
-    # m=2
-    # l=1
-    # x=3
-    # y=3
-    # my_array2=myarray2(elems, r, c, by_row)
-
-    # print(my_array2.get_pos(j, k))
-    # print(my_array2.get_coords(m))
-    # print(my_array2.switch().switch().elems)
-    # print (my_array2.get_row(j))
-    # print (my_array2.get_col(k))
-    # print (my_array2.get_elem(j, k))
-    # print(my_array2.del_row(j).elems)
-    # print(my_array2.del_col(k).elems)
-    # print(my_array2.swap_rows(j, k).elems)
-    # print (my_array2.swap_cols(l, m).elems)
-    # print (my_array2.scale_row(j,x).elems)
-    # print(my_array2.scale_col(k,y).elems)
-    # print (my_array2.flip_rows().elems)
-    # print(my_array2.flip_cols().elems)
-    # print(my_array2.transpose().transpose().elems)
+    elems=[[0,1,2],[
+            3,4,5],[
+            6,7,8]]
     r=3   
     c=3
     by_row=True
-
+    
+    j=2
+    k=1
+    m=2
+    l=1
+    x=3
+    y=3
+    my_array2=myarray2(elems, r, c, by_row)
+    
+    print(my_array2.get_pos(j, k))
+    print(my_array2.get_coords(m))
+    print(my_array2.switch().switch().elems)
+    print (my_array2.get_row(j))
+    print (my_array2.get_col(k))
+    print (my_array2.get_elem(j, k))
+    print(my_array2.del_row(j).elems)
+    print(my_array2.del_col(k).elems)
+    print(my_array2.swap_rows(j, k).elems)
+    print (my_array2.swap_cols(l, m).elems)
+    print (my_array2.scale_row(j,x).elems)
+    print(my_array2.scale_col(k,y).elems)
+    print (my_array2.flip_rows().elems)
+    print(my_array2.flip_cols().elems)
+    print(my_array2.transpose().transpose().elems)
+    r=3   
+    c=3
+    by_row=True
+    
     j=2
     k=1
     m=2
@@ -770,32 +790,33 @@ if __name__=='__main__':
               3, 2, 1,
               1, 0, 1]
     my_array=myarray(elems, r, c, by_row)
-    # print(my_array.get_pos( j, k))
-    # print(my_array.get_coords(9))
-    # print(my_array.switch().switch().elems)
-    # print(my_array.get_row(2))
-    # print(my_array.get_col(2))
-    # print(my_array.del_row(2).elems)
-    # print(my_array.del_col(2).elems)
-    # print (my_array.swap_rows(j, k).elems, )
-    # print(my_array.swap_cols(l, m).elems)
-    # print(my_array.scale_row(j, x).elems)
-    # print(my_array.scale_col(k, y).elems)
-    # print(my_array.transpose().transpose().elems)
-    # print(my_array.flip_cols().elems)
-    # print (my_array.flip_rows().elems)
-    # print(my_array.det())
-    # elems2=[0,1,2,3,4,5]
-    # r2=3
-    # c2=2
-    # by_row2=True
-    # print(my_array.cofactor())
-    # print(2-my_array)
-    # print(my_array.inversa())
-    # print(my_array.del_row2(2))
-    # print(my_array.del_col(2).elems)
-    #print(my_array.swap_col2(1, 2))
+    print(my_array.get_pos( j, k))
+    print(my_array.get_coords(9))
+    print(my_array.switch().switch().elems)
+    print(my_array.get_row(2))
+    print(my_array.get_col(2))
+    print(my_array.del_row(2).elems)
+    print(my_array.del_col(2).elems)
+    print (my_array.swap_rows(j, k).elems, )
+    print(my_array.swap_cols(l, m).elems)
+    print(my_array.scale_row(j, x).elems)
+    print(my_array.scale_col(k, y).elems)
+    print(my_array.transpose().transpose().elems)
+    print(my_array.flip_cols().elems)
+    print (my_array.flip_rows().elems)
+    print(my_array.det())
+    elems2=[0,1,2,3,4,5]
+    r2=3
+    c2=2
+    by_row2=True
+    print(my_array.cofactor())
+    print(2-my_array)
+    print(my_array.inversa())
+    print(my_array.del_row2(2))
+    print(my_array.del_col(2).elems)
+    print(my_array.swap_col2(1, 2))
     print(my_array.swap_rows2(1,2))
+    print(my_array**4)
 
 
 
